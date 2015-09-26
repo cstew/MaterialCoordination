@@ -22,13 +22,13 @@ public class StandardBehaviorActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.activity_standard_behavior_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new SimpleAdapter());
+        recyclerView.setAdapter(new SimpleAdapter(this));
 
         findViewById(R.id.activity_standard_behavior_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 View coordinatorLayout = findViewById(R.id.activity_standard_behavior_coordinatorlayout);
-                Snackbar.make(coordinatorLayout, "Hello!", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(coordinatorLayout, R.string.thanks_for_sharing, Snackbar.LENGTH_LONG).show();
             }
         });
     }

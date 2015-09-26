@@ -1,14 +1,16 @@
 package com.bignerdranch.android.materialcoordination.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.bignerdranch.android.materialcoordination.R;
 import com.bignerdranch.android.materialcoordination.adapter.SimpleAdapter;
-import com.bignerdranch.android.materialcoordination.adapter.SimpleItem;
+import com.bignerdranch.android.materialcoordination.model.SimpleItem;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,9 +18,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<SimpleItem> mItems = Arrays.asList(
-            new SimpleItem("Normal Use", StandardBehaviorActivity.class),
-            new SimpleItem("Shrinking FAB", ShrinkingFabActivity.class),
-            new SimpleItem("Custom FAB Toolbar", FabToolbarCustomActivity.class)
+            new SimpleItem("Normal Use", StandardBehaviorActivity.class, false),
+            new SimpleItem("Shrinking FAB", ShrinkingFabActivity.class, false),
+            new SimpleItem("Custom FAB Toolbar", FabToolbarCustomActivity.class, true)
     );
 
     @Override
@@ -31,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(new SimpleAdapter(mItems, new SimpleAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(SimpleItem simpleItem) {
+
+                if (simpleItem.isLollipopPlus() && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    Toast.makeText(MainActivity.this, R.string.lollipop_plus_error, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 startActivity(new Intent(MainActivity.this, simpleItem.getClazz()));
             }
         }));

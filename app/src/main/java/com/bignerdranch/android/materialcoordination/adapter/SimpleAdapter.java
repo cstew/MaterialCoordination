@@ -1,35 +1,42 @@
 package com.bignerdranch.android.materialcoordination.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bignerdranch.android.materialcoordination.R;
+import com.bignerdranch.android.materialcoordination.model.SimpleItem;
+import com.bignerdranch.android.materialcoordination.util.FileLoader;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleHolder> {
 
     private List<SimpleItem> mItems;
+    private boolean mShowIcon;
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
         void onItemClicked(SimpleItem simpleItem);
     }
 
-    public SimpleAdapter() {
-        mItems = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            mItems.add(new SimpleItem("Item " + i));
-        }
+    public SimpleAdapter(Context context) {
+        this(FileLoader.loadSampleItems(context), null, true);
     }
 
     public SimpleAdapter(List<SimpleItem> items, OnItemClickListener onItemClickListener) {
+        this(items, onItemClickListener, false);
+    }
+
+    private SimpleAdapter(List<SimpleItem> items, OnItemClickListener onItemClickListener, boolean showIcon) {
         mItems = items;
         mOnItemClickListener = onItemClickListener;
+        mShowIcon = showIcon;
     }
 
     @Override
@@ -50,9 +57,18 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleHold
     }
 
     @Override
-    public void onBindViewHolder(SimpleHolder viewHolder, int i) {
+    public void onBindViewHolder(final SimpleHolder viewHolder, int i) {
         SimpleItem item = mItems.get(i);
         viewHolder.getTextView().setText(item.getName());
+
+        if (!mShowIcon) {
+            viewHolder.getImageView().setVisibility(View.GONE);
+        }
+
+        Context context = viewHolder.itemView.getContext();
+        Picasso.with(context)
+            .load(item.getIconUrl())
+            .into(viewHolder.getImageView());
     }
 
     @Override
@@ -63,14 +79,21 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleHold
     public static class SimpleHolder extends RecyclerView.ViewHolder {
 
         private TextView mTextView;
+        private ImageView mImageView;
 
         public SimpleHolder(View itemView) {
             super(itemView);
-            mTextView = (TextView) itemView.findViewById(android.R.id.text1);
+            mTextView = (TextView) itemView.findViewById(R.id.list_item_text);
+            mImageView = (ImageView) itemView.findViewById(R.id.list_item_image);
         }
 
         public TextView getTextView() {
             return mTextView;
         }
+
+        public ImageView getImageView() {
+            return mImageView;
+        }
     }
+
 }

@@ -1,13 +1,12 @@
-package com.bignerdranch.android.materialcoordination;
+package com.bignerdranch.android.materialcoordination.behavior;
 
 import android.content.Context;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class TransformingToolbarBehavior extends CoordinatorLayout.Behavior<Toolbar> {
+public class TransformingToolbarBehavior extends CoordinatorLayout.Behavior<View> {
     private static final String TAG = TransformingToolbarBehavior.class.getSimpleName();
 
     private ToolbarChangeListener mToolbarChangeListener;
@@ -30,12 +29,12 @@ public class TransformingToolbarBehavior extends CoordinatorLayout.Behavior<Tool
     }
 
     @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, Toolbar child, View dependency) {
+    public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
         return dependency instanceof AppBarLayout;
     }
 
     @Override
-    public boolean onDependentViewChanged(CoordinatorLayout parent, Toolbar child, View dependency) {
+    public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
 
         if (dependency.getTop() >= 0) {
             // Show bottom toolbar

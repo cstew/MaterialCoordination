@@ -1,4 +1,4 @@
-package com.bignerdranch.android.materialcoordination;
+package com.bignerdranch.android.materialcoordination.behavior;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

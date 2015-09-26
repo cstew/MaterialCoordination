@@ -3,4 +3,6 @@
     <string name="title_activity_standard_behavior">Standard Behavior</string>
     <string name="title_activity_shrinking_fab">Shrinking FAB</string>
     <string name="title_activity_fab_toolbar_custom">FAB Toolbar Custom</string>
+    <string name="lollipop_plus_error">Sorry, Lollipop+.</string>
+    <string name="thanks_for_sharing">Thanks for sharing</string>
 </resources>

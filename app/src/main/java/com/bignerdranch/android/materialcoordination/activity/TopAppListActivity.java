@@ -1,6 +1,7 @@
 package com.bignerdranch.android.materialcoordination.activity;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,23 +12,26 @@ import android.view.View;
 import com.bignerdranch.android.materialcoordination.R;
 import com.bignerdranch.android.materialcoordination.adapter.SimpleAdapter;
 
-public class ShrinkingFabActivity extends AppCompatActivity {
+public abstract class TopAppListActivity extends AppCompatActivity {
+
+    @LayoutRes
+    protected abstract int getLayoutResId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shrinking_fab);
+        setContentView(getLayoutResId());
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.activity_standard_behavior_recyclerview);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new SimpleAdapter(this));
 
-        findViewById(R.id.activity_standard_behavior_fab).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View coordinatorLayout = findViewById(R.id.activity_standard_behavior_coordinatorlayout);
+                View coordinatorLayout = findViewById(R.id.coordinator_layout);
                 Snackbar.make(coordinatorLayout, R.string.thanks_for_sharing, Snackbar.LENGTH_LONG).show();
             }
         });

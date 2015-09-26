@@ -18,9 +18,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<SimpleItem> mItems = Arrays.asList(
-            new SimpleItem("Normal Use", StandardBehaviorActivity.class, false),
-            new SimpleItem("Shrinking FAB", ShrinkingFabActivity.class, false),
-            new SimpleItem("Custom FAB Toolbar", FabToolbarCustomActivity.class, true)
+            new SimpleItem("AppBarLayout", AppBarLayoutActivity.class, false),
+            new SimpleItem("Collapsing Toolbar", CollapsingToolbarActivity.class, false),
+            new SimpleItem("FAB Shrink Behavior", FabShrinkActivity.class, false),
+            new SimpleItem("Bottom Toolbar", BottomToolbarActivity.class, true)
     );
 
     @Override

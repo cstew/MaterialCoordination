@@ -2,25 +2,18 @@ package com.bignerdranch.android.materialcoordination.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
-import android.widget.Toast;
 
 import com.bignerdranch.android.materialcoordination.R;
 import com.bignerdranch.android.materialcoordination.behavior.TransformingToolbarBehavior;
-import com.bignerdranch.android.materialcoordination.adapter.SimpleAdapter;
 
-public class FabToolbarCustomActivity extends AppCompatActivity {
+public class BottomToolbarActivity extends TopAppListActivity {
 
     private float mInitialFabX;
     private float mInitialFabY;
@@ -29,19 +22,17 @@ public class FabToolbarCustomActivity extends AppCompatActivity {
     private FloatingActionButton mFloatingActionButton;
 
     @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_fab_toolbar_custom;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fab_toolbar_custom);
 
         mBottomToolbar = findViewById(R.id.activity_fab_custom_toolbar);
-
-        mFloatingActionButton = (FloatingActionButton) findViewById(R.id.activity_standard_behavior_fab);
-
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.activity_standard_behavior_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new SimpleAdapter(this));
+        mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        mFloatingActionButton.setOnClickListener(null);
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) mBottomToolbar.getLayoutParams();
         TransformingToolbarBehavior transformingToolbarBehavior = (TransformingToolbarBehavior) layoutParams.getBehavior();

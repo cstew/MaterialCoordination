@@ -2,6 +2,7 @@
     <string name="app_name">Material Coordination</string>
     <string name="title_activity_app_bar">AppBarLayout</string>
     <string name="title_activity_collapsing_toolbar">CollapsingToolbar</string>
+    <string name="title_activity_fab_anchor">FAB Anchor</string>
     <string name="title_activity_shrinking_fab">FAB Shrink Behavior</string>
     <string name="title_activity_fab_toolbar_custom">Bottom Toolbar</string>
     <string name="lollipop_plus_error">Sorry, Lollipop+.</string>

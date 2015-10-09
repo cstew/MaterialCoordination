@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private List<SimpleItem> mItems = Arrays.asList(
             new SimpleItem("AppBarLayout", AppBarLayoutActivity.class, false),
             new SimpleItem("Collapsing Toolbar", CollapsingToolbarActivity.class, false),
+            new SimpleItem("FAB Anchor", FabAnchorActivity.class, false),
             new SimpleItem("FAB Shrink Behavior", FabShrinkActivity.class, false),
             new SimpleItem("Bottom Toolbar", BottomToolbarActivity.class, true)
     );

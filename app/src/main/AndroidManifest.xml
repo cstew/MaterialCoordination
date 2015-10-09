@@ -27,6 +27,9 @@
             android:name=".activity.CollapsingToolbarActivity"
             android:label="@string/title_activity_collapsing_toolbar"/>
         <activity
+            android:name=".activity.FabAnchorActivity"
+            android:label="@string/title_activity_fab_anchor"/>
+        <activity
             android:name=".activity.FabShrinkActivity"
             android:label="@string/title_activity_shrinking_fab"/>
         <activity
